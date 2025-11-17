@@ -1,4 +1,4 @@
-# Sembako Simulator
+# Sembako
 
 Program simulasi toko sembako sederhana. Mengambil peran sebagai kasir dari toko sembako. Program ini dibuat menggunakan bahasa C.
 
@@ -12,8 +12,8 @@ program.
 ### Clone Repository
 
 ```bash
-git clone https://github.com/ilhamkhalik05/sembako-simulator.git
-cd sembako-simulator
+git clone https://github.com/ilhamkhalik05/sembako.git
+cd sembako
 ```
 
 ### Compile Program

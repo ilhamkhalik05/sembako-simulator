@@ -1,10 +1,48 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-void productModule();
-void transactionModule();
+// Struktur data
+// ---------------------------------------------------------
+typedef enum
+{
+    KATEGORI_MAKANAN,
+    KATEGORI_MINUMAN,
+    KATEGORI_ALAT_RUMAH_TANGGA,
+    KATEGORI_LAINNYA,
+} Kategori;
+
+typedef struct
+{
+    char nama[50];
+    float harga;
+    int stok;
+    Kategori kategori;
+} Produk;
+
+typedef struct
+{
+    char namaProduk[50];
+    int kuantitas;
+    float subtotal; // subtotal = hargaProduk * kuantitas
+} Item;
+
+typedef struct
+{
+    char namaKustomer[50];
+    int jumlahItem;
+    float total;
+    Item items[]; // Harus ditaruh di paling bawah
+} Transaksi;
+
+// Modul
+// ---------------------------------------------------------
+void modulProduk();
+void modulTransaksi();
+
+// Utils/fungsi pembantu
+// ---------------------------------------------------------
 void header();
-void headerModule(char *moduleName);
+void headerModul(char *moduleName);
 bool isValidChoice(int start, int end, int choice);
 
 int main()
@@ -39,10 +77,10 @@ int main()
         switch (selectedMainModule)
         {
         case 1:
-            productModule();
+            modulProduk();
             break;
         case 2:
-            transactionModule();
+            modulTransaksi();
             break;
         default:
             break;
@@ -61,7 +99,7 @@ int main()
  * seperti menampilkan daftar produk, menambah produk baru,
  * mengubah data produk, menghapus produk, dan lain sebagainya.
  */
-void productModule()
+void modulProduk()
 {
     int selectedProductSubModule = 0;
     const int startProductSubModule = 1;
@@ -73,7 +111,7 @@ void productModule()
         do
         {
             printf("\n");
-            headerModule("Produk");
+            headerModul("Produk");
 
             printf("Pilih submodul yang tersedia:\n");
             printf("1. Lihat semua produk\n");
@@ -98,7 +136,7 @@ void productModule()
  * seperti membuat transaksi baru, melihat seluruh history transaksi,
  * dan lain sebagainya.
  */
-void transactionModule()
+void modulTransaksi()
 {
     int selectedTransactionSubModule = 0;
     const int startTransactionSubModule = 1;
@@ -110,7 +148,7 @@ void transactionModule()
         do
         {
             printf("\n");
-            headerModule("Transaksi");
+            headerModul("Transaksi");
 
             printf("Pilih submodul yang tersedia:\n");
             printf("1. Buat transaksi baru\n");
@@ -146,7 +184,7 @@ void header()
  *
  * @param moduleName nama modul
  */
-void headerModule(char *moduleName)
+void headerModul(char *moduleName)
 {
     printf("====== Modul %s ======\n", moduleName);
 }
